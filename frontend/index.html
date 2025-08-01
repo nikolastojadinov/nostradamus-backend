@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nostradamus AI</title>
+</head>
+<body>
+  <h1>Ask Nostradamus</h1>
+  <input type="text" id="question" placeholder="Your question..." />
+  <button onclick="sendQuestion()">Ask (0.1 Pi)</button>
+  <p id="answer"></p>
+  <script>
+    async function sendQuestion() {
+      const question = document.getElementById("question").value;
+      const res = await fetch("https://your-backend-url/payments/complete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: question })
+      });
+      const data = await res.json();
+      document.getElementById("answer").innerText = data.answer;
+    }
+  </script>
+</body>
+</html>
